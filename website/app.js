@@ -14,11 +14,15 @@ function performAction(e) {
 
   getData(baseURL, zipCode, apiKey)
     .then(function (data) {
-      postData("/add", {
-        temperature: data.main.temp,
-        date: newDate,
-        userResponse: feelings,
-      });
+      if (data && data.main && data.main.temp) {
+        postData("/add", {
+          temperature: data.main.temp,
+          date: newDate,
+          userResponse: feelings,
+        });
+      } else {
+        console.error("Temperature data is missing in the API response");
+      }
     })
     .then(() => updateUI());
 }
