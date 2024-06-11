@@ -20,7 +20,7 @@ function performAction(e) {
         userResponse: feelings,
       });
     })
-    .then(updateUI());
+    .then(() => updateUI());
 }
 
 const getData = async (baseURL, id, key) => {
